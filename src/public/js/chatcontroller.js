@@ -38,13 +38,13 @@ chatBox.addEventListener('keyup', ({ key }) => {
 //FRONT RECIBE
 socket.on('chat_back_to_front', (messagesChat) => {
   console.log(messagesChat);
-  let msgsFormateados = '';
+  let formatMessages = '';
   messagesChat.forEach((message) => {
-    msgsFormateados += "<div style='border: 1px solid red;'>";
-    msgsFormateados += '<p>' + message.user + '</p>';
-    msgsFormateados += '<p>' + message.message + '</p>';
-    msgsFormateados += '</div>';
+    formatMessages += "<div style='border: 1px solid red;'>";
+    formatMessages += '<p>' + message.user + '</p>';
+    formatMessages += '<p>' + message.message + '</p>';
+    formatMessages += '</div>';
   });
   const divMsgs = document.getElementById('div-messagesChat');
-  divMsgs.innerHTML = msgsFormateados;
+  divMsgs.innerHTML = formatMessages;
 });

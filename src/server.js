@@ -6,6 +6,8 @@ import http from "http";
 
 import viewsfsRoutes from './routes/filesystemroutes/viewsfs.routes.js';
 import { apiRouter } from './routes/filesystemroutes/apifs.routes.js';
+import productfsroutes from "./routes/filesystemroutes/productsfs.routes.js";
+import cartfsroutes from "./routes/filesystemroutes/cartsfs.routes.js";
 
 import viewsRoutes from "./routes/view.routes.js";
 import productRoutes from "./routes/products.routes.js";
@@ -45,11 +47,15 @@ app.set("view engine", "handlebars");
 
 app.use("/fs/home", viewsfsRoutes);
 app.use("/fs/api", apiRouter);
+app.use("/fs/products", productfsroutes)
+app.use("/fs/carts", cartfsroutes)
+
 
 app.use("/", viewsRoutes);
 app.use("/products", productRoutes);
 app.use("/carts", cartRoutes);
 app.use("/chat", chatRoutes);
+app.use('/realTimeProducts', viewsRoutes); 
 
 //SERVER START
 

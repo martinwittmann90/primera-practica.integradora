@@ -24,23 +24,23 @@ form.addEventListener("submit", (event) => {
     formProducts.reset();
   });
 
-  socket.on("products_back_to_front", (data) => {
-    console.log("products_back_to_front", data);
+  socket.on("products_back_to_front", (dataNewProduct) => {
+    console.log("products_back_to_front", dataNewProduct);
     const cardContainer = document.getElementById('cardContainer');
     let newCard = document.createElement('div');
-    newCard.id = data.id;
+    newCard.id = dataNewProduct.id;
     newCard.style.display = 'inline-block';
     newCard.style.margin = '10px';
     newCard.style.border = '5px solid black';
 
     newCard.innerHTML = `
-    <h2>${data.title}</h2>
-    <p>${data.description}</p>
-    <p>Precio: ${data.price}</p>
-    <p>Code: ${data.code}</p>
-    <p>Stock: ${data.stock}</p>
-    <p>Category: ${data.category}</p>
-    <img src="${data.thumbnails}">
+    <h2>${dataNewProduct.title}</h2>
+    <p>${dataNewProduct.description}</p>
+    <p>Precio: ${dataNewProduct.price}</p>
+    <p>Code: ${dataNewProduct.code}</p>
+    <p>Stock: ${dataNewProduct.stock}</p>
+    <p>Category: ${dataNewProduct.category}</p>
+    <img src="${dataNewProduct.thumbnails}">
     `;
     cardContainer.appendChild(newCard);
     window.location.reload();
@@ -51,8 +51,8 @@ function deleteProduct(id) {
     method: "DELETE",
   })
     .then((res) => res.json())
-    .then((data) => {
-      console.log(data);
+    .then((dataNewProduct) => {
+      console.log(dataNewProduct);
       window.location.reload();
     })
     .catch((err) => console.log(err));

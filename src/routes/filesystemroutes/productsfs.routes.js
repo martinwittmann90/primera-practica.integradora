@@ -5,8 +5,6 @@ import multer from "multer";
 const newProductManager = new ProductManager('./src/DAO/db/products.json');
 import { validateNumber } from "../../utils/utils.js";
 import { checkRequest, checkCodeNotRepeated, checkNumberParams, } from "../../middleware/validators.js";
-import { productsSchema } from "../../DAO/models/product.schema.js";
-
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -19,7 +17,7 @@ const storage = multer.diskStorage({
 
 router.get("/", async (req, res) => {
     try {
-        const products = await productsSchema.find({});
+        const products = await newProductManager.getProducts();
         const limit = req.query.limit;
         const isValidLimit = validateNumber(limit);
         products
@@ -44,7 +42,7 @@ router.get("/", async (req, res) => {
 router.get("/:productsId", async (req, res) => {
     try {
         const id = req.params.id;
-        const product = await productsSchema.find({});
+        const product = await newProductManager.getProductById(id);
         product
             ? res.status(200).json({
                 status: "success",
