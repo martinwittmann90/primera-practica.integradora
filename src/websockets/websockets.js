@@ -30,7 +30,7 @@ const handleMessageFromFront = async (message, io) => {
 
 const handleDeleteProduct = async (socket, id, io) => {
   try {
-    await productManager.deleteProduct(id);
+    await productManager.delete(id);
     socket.emit('productDeleted', { message: 'Producto eliminado exitosamente' });
     const productList = await productManager.getAll();
     io.emit('updatedProducts', { productList });
