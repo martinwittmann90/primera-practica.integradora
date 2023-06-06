@@ -35,7 +35,7 @@ const handleDeleteProduct = async (socket, id, io) => {
     const productList = await productManager.getAll();
     io.emit('updatedProducts', { productList });
   } catch (error) {
-    console.error('Error al eliminar el producto:', error);
+    console.error('Error deleting the product:', error);
   }
 };
 
