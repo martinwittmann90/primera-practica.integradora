@@ -128,16 +128,5 @@
       "https://i.ibb.co/p23whvt/short-francia-Photo-Room.png"
     ],
     "id": 10
-  },
-  {
-    "title": "Rumania",
-    "description": "Casita",
-    "price": "12",
-    "thumbnails": "https://i.ibb.co/p23whvt/short-francia-Photo-Room.png",
-    "code": "1212",
-    "stock": "2",
-    "category": "Camisetas",
-    "id": 11,
-    "status": true
   }
 ]

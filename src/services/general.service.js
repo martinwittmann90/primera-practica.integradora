@@ -6,7 +6,7 @@ class MongoClass {
     }
     async getAll() {
         try {
-            const all = await this.collection.find({});
+            const all = await this.collection.find({}).lean();
             return all;
         } catch (err) {
             throw new Error (err);
@@ -14,7 +14,7 @@ class MongoClass {
     }
     async getOne (id) {
         try {
-            const one = await this.collection.findById(id);
+            const one = await this.collection.findById(id).lean();
             return one;
         } catch {
             throw new Error (err);

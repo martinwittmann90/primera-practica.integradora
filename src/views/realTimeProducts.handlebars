@@ -76,12 +76,12 @@
         <div class="card-content" >
           <div class="media">
             <div class="media-content">
-              <p class="title is-6">Nombre: {{title}}</p>
-              <p class="subtitle is-6">Descripción: {{description}}</p>
-              <p class="subtitle is-6">Precio: {{price}}</p>
-              <p class="subtitle is-6">Stock: {{stock}}</p>
-              <p class="subtitle is-6">Categoria: {{category}}</p>
-              <p class="subtitle is-6">ID: {{id}}</p>
+              <p class="title is-6">Nombre: {{this.title}}</p>
+              <p class="subtitle is-6">Descripción: {{this.description}}</p>
+              <p class="subtitle is-6">Precio: {{this.price}}</p>
+              <p class="subtitle is-6">Stock: {{this.stock}}</p>
+              <p class="subtitle is-6">Categoria: {{this.category}}</p>
+              <p class="subtitle is-6">ID: {{this.id}}</p>
             </div>
           </div>
           <button class="button is-small" type="button" onclick="deleteProduct({{id}})">

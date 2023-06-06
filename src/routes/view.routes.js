@@ -2,8 +2,11 @@ import { Router } from "express";
 const router = Router()
 import ProductManager from "../DAO/appManager/productManager.js";
 const path = "src/DAO/db/products.json";
-const newProductManager = new ProductManager(path);
+
 import { validateNumber } from "../utils/utils.js";
+import {MongoDBProducts} from "../services/dbproducts.service.js"
+
+const newProductManager = new MongoDBProducts;
 
 router.get("/", async (req, res) => {
     try {
@@ -31,7 +34,7 @@ router.get("/", async (req, res) => {
 
 router.get("/realtimeproducts", async (req, res) => {
     try {
-        const products = await newProductManager.getProducts();
+        const products = await newProductManager.getAll();
         const limit = req.query.limit;
         const isValidLimit = validateNumber(limit);
         products
