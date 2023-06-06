@@ -10,7 +10,7 @@ const newProductManager = new MongoDBProducts;
 
 router.get("/", async (req, res) => {
     try {
-        const products = await newProductManager.getAll();
+        const products = await newProductManager.getAllItem();
         const limit = req.query.limit;
         const isValidLimit = validateNumber(limit);
         products
@@ -34,7 +34,7 @@ router.get("/", async (req, res) => {
 
 router.get("/realtimeproducts", async (req, res) => {
     try {
-        const products = await newProductManager.getAll();
+        const products = await newProductManager.getAllItem();
         const limit = req.query.limit;
         const isValidLimit = validateNumber(limit);
         products

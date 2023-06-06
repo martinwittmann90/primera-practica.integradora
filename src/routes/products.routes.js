@@ -19,7 +19,7 @@ const dbProducts = new MongoDBProducts();
 
 router.get("/", async (req, res) => {
     try {
-        const products = await dbProducts.getAll();
+        const products = await dbProducts.getAllItem();
         const limit = req.query.limit;
         const isValidLimit = validateNumber(limit);
         products
@@ -44,7 +44,7 @@ router.get("/", async (req, res) => {
 router.get("/:id", async (req, res) => {
     try {
         const id = req.params.id;
-        const product = await dbProducts.getOne(id);
+        const product = await dbProducts.getOneItem(id);
         product
             ? res.status(200).json({
                 status: "success",
@@ -66,7 +66,7 @@ router.get("/:id", async (req, res) => {
 router.post("/", checkRequest, async (req, res) => {
     try {
         const newProduct = req.body;
-        const allProducts = await dbProducts.getAll();
+        const allProducts = await dbProducts.getAllItem();
         const product = allProducts.find(
             (product) => product.code == newProduct.code
         );
@@ -77,7 +77,7 @@ router.post("/", checkRequest, async (req, res) => {
             });
             return;
         }
-        const productCreated = await dbProducts.create(newProduct);
+        const productCreated = await dbProducts.createItem(newProduct);
         console.log(productCreated);
         res.status(201).json({
             status: "success",
@@ -111,7 +111,13 @@ router.put("/:id", checkRequest, async (req, res) => {
 router.delete("/:id", async (req, res) => {
     try {
         const id = req.params.id;
-        const productDeleted = await dbProducts.delete(id);
+        const productDeleted = await dbProducts.deleteItem(id);
+        if (!productDeleted) {
+            return res.status(404).json({
+                status: 'error',
+                msg: 'Product not found',
+            });
+        }
         res.status(200).json({
             status: "success",
             payload: productDeleted,

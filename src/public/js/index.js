@@ -46,8 +46,25 @@ formProducts.addEventListener("submit", (event) => {
     window.location.reload();
 });
 
+
 function deleteProduct(id) {
-  fetch(`/api/products/${id}`, {
+  fetch(`/products/${id}`, {
+    method: "DELETE",
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      console.log(data);
+      const cardToRemove = document.getElementById(id);
+      if (cardToRemove) {
+        cardToRemove.remove();
+      }
+    })
+    .catch((err) => console.log(err));
+}
+
+
+/* function deleteProduct(id) {
+  fetch(`/products/${id}`, {
     method: "DELETE",
   })
     .then((res) => res.json())
@@ -56,5 +73,5 @@ function deleteProduct(id) {
       window.location.reload();
     })
     .catch((err) => console.log(err));
-}
+} */
 

@@ -5,14 +5,14 @@ export class MongoDBCarts extends MongoClass {
     constructor() {
         super("carts", cartsSchema);
     }
-    async getAll() {
+    async getAllItem() {
         const carts = await this.collection.find({}).populate({
             path: "products",
             populate: { path: "_id", model: "products" },
         });
         return carts;
     }
-    async getOne(id) {
+    async getOneItem(id) {
         try {
             const one = await this.collection.findById(id).populate({
                 path: "products",

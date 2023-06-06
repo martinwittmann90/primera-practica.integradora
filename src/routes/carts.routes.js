@@ -8,7 +8,7 @@ const dbProducts = new MongoDBProducts();
 
 router.post("/", async (req, res) => {
   try {
-    const cartCreated = await dbCarts.create();
+    const cartCreated = await dbCarts.createItem();
     cartCreated
       ? res.status(201).json({
           status: "success",
@@ -27,7 +27,7 @@ router.post("/", async (req, res) => {
 
 router.get("/", async (req, res) => {
   try {
-    const allCarts = await dbCarts.getAll();
+    const allCarts = await dbCarts.getAllItem();
     allCarts
       ? res.status(200).json({
           status: "success",
@@ -48,7 +48,7 @@ router.get("/", async (req, res) => {
 router.get("/:idCart/products", async (req, res) => {
   try {
     const idCart = req.params.idCart;
-    const cart = await dbCarts.getOne(idCart);
+    const cart = await dbCarts.getOneItem(idCart);
     cart
       ? res.status(200).json({
           status: "success",
@@ -69,12 +69,12 @@ router.get("/:idCart/products", async (req, res) => {
 
 router.put("/:idCart/products/:idProduct", async (req, res) => {
   try {
-    const cart = await dbCarts.getOne(req.params.idCart);
-    const product = await dbProducts.getOne(req.params.idProduct);
+    const cart = await dbCarts.getOneItem(req.params.idCart);
+    const product = await dbProducts.getOneItem(req.params.idProduct);
 
     if (cart && product) {
       const cartUpdated = await dbCarts.addProducts(cart, product);
-      const response = await dbCarts.getOne(cartUpdated._id);
+      const response = await dbCarts.getOneItem(cartUpdated._id);
       res.status(201).json({
         status: "success",
         payload: response,

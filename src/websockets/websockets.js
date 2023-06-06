@@ -10,8 +10,8 @@ const productManager = new MongoDBProducts();
 
 const handleNewProduct = async (dataNewProduct, io) => {
   try {
-    await productManager.create(dataNewProduct);
-    const productListUpdated = await productManager.getAll();
+    await productManager.createItem(dataNewProduct);
+    const productListUpdated = await productManager.getAllItem();
     io.sockets.emit("products_back_to_front", { productListUpdated });
   } catch (err) {
     console.log(err);
@@ -20,7 +20,7 @@ const handleNewProduct = async (dataNewProduct, io) => {
 
 const handleMessageFromFront = async (message, io) => {
   try {
-    const msgCreated = await MessageModel.create(message);
+    const msgCreated = await MessageModel.createItem(message);
     const messageChat = await MessageModel.find({});
     io.sockets.emit('chat_back_to_front', messageChat);
   } catch (err) {
@@ -30,9 +30,9 @@ const handleMessageFromFront = async (message, io) => {
 
 const handleDeleteProduct = async (socket, id, io) => {
   try {
-    await productManager.delete(id);
+    await productManager.deleteItem(id);
     socket.emit('productDeleted', { message: 'Product successfully removed' });
-    const productListUpdated = await productManager.getAll();
+    const productListUpdated = await productManager.getAllItem();
     io.emit('products_back_to_front', {productListUpdated} );
   } catch (error) {
     console.error('Error deleting the product:', error);

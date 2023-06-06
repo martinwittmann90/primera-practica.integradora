@@ -4,7 +4,7 @@ class MongoClass {
     constructor ( collectionName, docSchema ) {
         this.collection = mongoose.model(collectionName, docSchema);
     }
-    async getAll() {
+    async getAllItem() {
         try {
             const all = await this.collection.find({}).lean();
             return all;
@@ -12,7 +12,7 @@ class MongoClass {
             throw new Error (err);
         }
     }
-    async getOne (id) {
+    async getOneItem (id) {
         try {
             const one = await this.collection.findById(id).lean();
             return one;
@@ -20,7 +20,7 @@ class MongoClass {
             throw new Error (err);
         }
     }
-    async create(doc) {
+    async createItem(doc) {
         console.log(doc);
     try {
         const newDoc = await this.collection.create(doc);
@@ -29,7 +29,7 @@ class MongoClass {
         throw new Error (err);
     }
 }
-    async update(id, doc) {
+    async updateItem(id, doc) {
         try {
         await this.collection.findByIdAndUpdate(id, doc);
         const docUpdate = await this.collection.findById(id);
@@ -38,7 +38,7 @@ class MongoClass {
         throw new Error (err);
     }
 }
-    async delete (id) {
+    async deleteItem (id) {
         try {
             const deleteDoc = await this.collection.findByIdAndDelete(id);
             return deleteDoc;
