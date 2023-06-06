@@ -32,8 +32,8 @@ const handleDeleteProduct = async (socket, id, io) => {
   try {
     await productManager.delete(id);
     socket.emit('productDeleted', { message: 'Product successfully removed' });
-    const productList = await productManager.getAll();
-    io.emit('updatedProducts', { productList });
+    const productListUpdated = await productManager.getAll();
+    io.emit('products_back_to_front', {productListUpdated} );
   } catch (error) {
     console.error('Error deleting the product:', error);
   }
