@@ -31,12 +31,11 @@ const handleMessageFromFront = async (message, io) => {
 const handleDeleteProduct = async (socket, id, io) => {
   try {
     await productManager.delete(id);
-    socket.emit('productDeleted', { message: 'Producto eliminado exitosamente' });
+    socket.emit('productDeleted', { message: 'Product successfully removed' });
     const productList = await productManager.getAll();
     io.emit('updatedProducts', { productList });
   } catch (error) {
     console.error('Error al eliminar el producto:', error);
-    socket.emit('productDeleteError', { error: 'Ocurrió un error al eliminar el producto' });
   }
 };
 

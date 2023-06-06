@@ -1,15 +1,15 @@
 const socket = io();
 
-const form = document.getElementById("form");
-form.addEventListener("submit", (event) => {
+const formProducts = document.getElementById("formProducts");
+formProducts.addEventListener("submit", (event) => {
   event.preventDefault();
-  const title = form.elements.title.value;
-  const description = form.elements.description.value;
-  const price = form.elements.price.value;
-  const thumbnails = form.elements.thumbnails.value;
-  const code = form.elements.code.value;
-  const stock = form.elements.stock.value;
-  const category = form.elements.category.value;
+  const title = formProducts.elements.title.value;
+  const description = formProducts.elements.description.value;
+  const price = formProducts.elements.price.value;
+  const thumbnails = formProducts.elements.thumbnails.value;
+  const code = formProducts.elements.code.value;
+  const stock = formProducts.elements.stock.value;
+  const category = formProducts.elements.category.value;
     const newProductIncorporate = {
       title,
       description,
