@@ -12,9 +12,9 @@ export async function connectMongo() {
     await connect(
       "mongodb+srv://martinwittmann90:iC00uo5o@projectmartinwittmann.l8a7l5b.mongodb.net/ecommerce?retryWrites=true&w=majority"
     );
-    console.log("Plug to mongo");
+    console.log("Connected succesfuly");
   } catch (e) {
     console.log(e);
-    throw "Can not connect to the db";
+    throw "Can not connect to mongo";
   }
 }
